@@ -1,0 +1,12 @@
+{% extends 'clientes/base.html' %}
+
+{% block titulo %} Veterinarios {% endblock titulo %}
+
+{% block contenido %}
+        <h1>Nuestros especialistas:</h1>
+
+        {% for veterinario in veterinarios %}
+            <p>{{veterinario.apellido}}, {{veterinario.nombre}} </p>
+        {% endfor %}
+
+{% endblock %}

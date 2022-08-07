@@ -1,0 +1,12 @@
+{% extends 'clientes/base.html' %}
+
+{% block titulo %}  Mascotas {% endblock titulo %}
+
+{% block contenido %}
+        <h1>Las mascotas que atendemos:</h1>
+
+        {% for mascota in mascotas %}
+            <p>Nombre: {{mascota.nombre}} - Raza: {{mascota.raza}}</p>
+        {% endfor %}
+
+{% endblock %}
