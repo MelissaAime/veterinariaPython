@@ -4,7 +4,7 @@ from django.forms import Form, CharField, IntegerField
 class FormBuscarVeterinario(Form):
     nombre_veterinario = CharField(max_length=100) 
 
-#Buscar veterinario:
+#Buscar mascota:
 class FormBuscarMascota(Form):
     nombre_mascota = CharField(max_length=100) 
 
@@ -13,5 +13,3 @@ class FormClienteCrear(Form):
     nombre = CharField(max_length=40)
     apellido = CharField(max_length=40)
     telefono = IntegerField()
-
-#Crear mascota:

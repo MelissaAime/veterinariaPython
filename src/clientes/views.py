@@ -61,7 +61,7 @@ def crear_cliente(request):
 
     if request.method == "GET":
         formulario = FormClienteCrear()
-        return render(request,"clientes/clientes.html", {"formulario": formulario})
+        return render(request,"clientes/cliente_nuevo.html", {"formulario": formulario})
 
     else:
 
@@ -71,9 +71,9 @@ def crear_cliente(request):
             
             data = formulario.cleaned_data
 
-            nombre = data.get['nombre']
-            apellido = data.get['apellido']
-            telefono = data.get['telefono']
+            nombre = data.get('nombre')
+            apellido = data.get('apellido')
+            telefono = data.get('telefono')
 
             cliente = Cliente(nombre=nombre, apellido=apellido, telefono=telefono)
             cliente.save()
