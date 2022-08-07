@@ -6,7 +6,17 @@
         <h1>Nuestros clientes:</h1>
 
         {% for cliente in clientes %}
-            <p>{{cliente.nombre}}</p>
+        <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">
+                <h5 class="card-title">{{cliente.apellido}}, {{cliente.nombre}}</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">Teléfono: {{cliente.telefono}}</p>
+            </div>
+        </div>
         {% endfor %}
+
+        <a class="nav-link" href="{% url 'clientenuevo' %}">Crear cliente nuevo</a>
+
 
 {% endblock %}

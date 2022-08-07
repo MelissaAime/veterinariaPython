@@ -3,10 +3,34 @@
 {% block titulo %} Veterinarios {% endblock titulo %}
 
 {% block contenido %}
-        <h1>Nuestros especialistas:</h1>
 
-        {% for veterinario in veterinarios %}
-            <p>{{veterinario.apellido}}, {{veterinario.nombre}} </p>
-        {% endfor %}
+        <div>
+        <form method="get">
+                {{ formularioVete.as_table}}
+                <input type="submit" class="btn btn-dark px-5" value="Buscar">
+        </form>
+        </div>
+
+        <div class="container m-5">
+                <h1>Nuestros especialistas:</h1>
+
+                {% for veterinario in veterinarios %}
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                        <img class="img-fluid rounded-start" src="https://dummyimage.com/150x150/6c757d/dee2e6.jpg" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                        <div class="card-body">
+                                <h5 class="card-title">{{veterinario.apellido}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{veterinario.nombre}}</h6>
+                                <p class="card-text">Matricula: {{veterinario.matricula}}</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+        </div>
 
 {% endblock %}
