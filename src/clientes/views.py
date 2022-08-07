@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from clientes.models import Cliente, Mascotas, Veterinario
-from clientes.forms import FormBuscar, FormClienteCrear
+from clientes.forms import FormBuscarVeterinario, FormBuscarMascota, FormClienteCrear
 
 def inicio(request):
     return render(request, "clientes/index.html")
@@ -14,11 +14,24 @@ def cliente(request):
     return render(request, "clientes/clientes.html", context)
 
 def mascotas(request):
-    mascotas = Mascotas.objects.all()
+    lista_mascotas = Mascotas.objects.all()
 
-    context = {"mascotas" : mascotas}
+    #Formulario de búsqueda:
+    if request.GET.get("nombre_mascota"):
 
-    return render(request, "clientes/mascotas.html", context)
+        formularioMascota = FormBuscarMascota(request.GET)
+
+        if formularioMascota.is_valid():
+            data = formularioMascota.cleaned_data
+            lista_mascotas = Mascotas.objects.filter(nombre__icontains = data['nombre_mascota'])
+        
+        return render(request, "clientes/mascotas.html", {"mascotas": lista_mascotas, "formularioMascota": formularioMascota})
+    
+    else:
+        formularioMascota = FormBuscarMascota()
+        return render(request, "clientes/mascotas.html", {"mascotas": lista_mascotas, "formularioMascota": formularioMascota})
+
+
 
 def veterinarios(request):
 
@@ -27,7 +40,7 @@ def veterinarios(request):
     #Formulario de búsqueda:
     if request.GET.get("nombre_veterinario"):
 
-        formularioVete = FormBuscar(request.GET)
+        formularioVete = FormBuscarVeterinario(request.GET)
 
         if formularioVete.is_valid():
             data = formularioVete.cleaned_data
@@ -36,7 +49,7 @@ def veterinarios(request):
         return render(request, "clientes/veterinarios.html", {"veterinarios": lista_veterinarios, "formularioVete": formularioVete})
     
     else:
-        formularioVete = FormBuscar()
+        formularioVete = FormBuscarVeterinario()
         return render(request, "clientes/veterinarios.html", {"veterinarios": lista_veterinarios, "formularioVete": formularioVete})
 
 

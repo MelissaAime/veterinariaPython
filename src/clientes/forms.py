@@ -1,8 +1,12 @@
 from django.forms import Form, CharField, IntegerField
 
 #Buscar veterinario:
-class FormBuscar(Form):
+class FormBuscarVeterinario(Form):
     nombre_veterinario = CharField(max_length=100) 
+
+#Buscar veterinario:
+class FormBuscarMascota(Form):
+    nombre_mascota = CharField(max_length=100) 
 
 #Crear cliente:
 class FormClienteCrear(Form):
